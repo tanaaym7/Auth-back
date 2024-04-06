@@ -6,7 +6,18 @@ const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
 
-app.use(cors({ origin: "https://stream-ai.netlify.app", credentials: true }));
+const allowedOrigins = ["https://stream-ai.netlify.app"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) === -1) {
+        return callback("Origin not allowed", false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 const PORT = process.env.PORT;
 app.use(express.json());
