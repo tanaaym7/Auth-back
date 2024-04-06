@@ -28,7 +28,7 @@ async function loginUser(req, res) {
   try {
     existingUser = await User.findOne({ email });
   } catch (error) {
-    console.log(error.message);
+    return res.status(200).json({ error });
   }
 
   if (!existingUser) {
@@ -54,7 +54,6 @@ async function loginUser(req, res) {
     httpOnly: true,
     expires: new Date(Date.now() + 15 * 60 * 1000), // expire in 10 minutes
   });
-  console.log("**login done\n");
   return res.status(200).json({ message: "Sucessfully logged in " });
 }
 
@@ -67,24 +66,20 @@ async function getUser(req, res) {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    console.log("get user got hit");
     return res.status(200).json(user);
   } catch (error) {
-    console.log(error.message);
+    return res.status(200).json({ error });
   }
 }
 
 // LOGOUT USER
 async function logoutUser(req, res) {
-  console.log("cookie clearing started");
   const prevToken = req.cookies.token;
   if (!prevToken) {
     return res.status(404).json({ message: "No token found" });
   }
-  console.log("deleting..", prevToken);
-
+  
   res.clearCookie("token");
-  console.log("cookie cleared");
   return res.status(200).json({ message: "Successfully logged out" });
 }
 

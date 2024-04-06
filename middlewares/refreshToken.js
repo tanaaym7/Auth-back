@@ -25,7 +25,6 @@ function refreshToken(req, res, next) {
       httpOnly: true,
       expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
     });
-    console.log("***token is refreshed: ***/n");
     req.id = user.userId;
     next();
   });

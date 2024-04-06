@@ -5,6 +5,7 @@ const { connectToMongoDB } = require("./connect");
 const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
+require("dotenv").config();
 
 app.use(
   cors({
