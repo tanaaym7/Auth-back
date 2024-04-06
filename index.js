@@ -5,9 +5,17 @@ const { connectToMongoDB } = require("./connect");
 const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
-require("dotenv").config();
 
-app.use(cors({ origin: "https://stream-ai.netlify.app/", credentials: true }));
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "https://stream-ai.netlify.app",
+    credentials: true,
+    originWhitelist: ["https://stream-ai.netlify.app"],
+    optionsSuccessStatus: 200,
+  })
+);
 
 const PORT = process.env.PORT;
 app.use(express.json());
