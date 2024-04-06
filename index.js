@@ -6,8 +6,8 @@ const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-require("dotenv").config();
+app.use(cors({ origin: "https://auth-front-pied.vercel.app/", credentials: true }));
+
 const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cookieParser());
@@ -17,7 +17,9 @@ connectToMongoDB(process.env.MONGO_URL);
 
 // Register routes
 app.use("/api", userRoutes);
-
+app.get("/", (req, res) => {
+  res.json("hello world");
+});
 // Error handling middleware
 app.use(errorMiddleware);
 
