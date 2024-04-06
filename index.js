@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
 
-app.use(cors({ origin: "https://auth-front-pied.vercel.app/", credentials: true }));
+app.use(cors({ origin: "https://auth-front-pied.vercel.app", credentials: true }));
 
 const PORT = process.env.PORT;
 app.use(express.json());
