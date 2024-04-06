@@ -6,14 +6,13 @@ const cookieParser = require("cookie-parser");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
 
-const cors = require("cors");
-
 app.use(
   cors({
     origin: "https://stream-ai.netlify.app",
     credentials: true,
     originWhitelist: ["https://stream-ai.netlify.app"],
     optionsSuccessStatus: 200,
+    exposedHeaders: ["Access-Control-Allow-Origin"],
   })
 );
 
