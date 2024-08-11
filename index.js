@@ -9,12 +9,11 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: "https://stream-ai.netlify.app",
-    credentials: true,
-    originWhitelist: ["https://stream-ai.netlify.app"],
-    optionsSuccessStatus: 200,
-    exposedHeaders: ["Access-Control-Allow-Origin"],
-  })
+  origin: true, // Allow access from any origin
+  credentials: true,
+  optionsSuccessStatus: 200,
+  exposedHeaders: ["Access-Control-Allow-Origin"]
+});
 );
 
 const PORT = process.env.PORT;
