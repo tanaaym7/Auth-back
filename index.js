@@ -7,13 +7,15 @@ const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware.js");
 require("dotenv").config();
 
+
 app.use(
   cors({
-  origin: true, // Allow access from any origin
-  credentials: true,
-  optionsSuccessStatus: 200,
-  exposedHeaders: ["Access-Control-Allow-Origin"]
-});
+    origin: true,
+    credentials: true,
+    originWhitelist: ["https://stream-ai.netlify.app"],
+    optionsSuccessStatus: 200,
+    exposedHeaders: ["Access-Control-Allow-Origin"],
+  })
 );
 
 const PORT = process.env.PORT;
